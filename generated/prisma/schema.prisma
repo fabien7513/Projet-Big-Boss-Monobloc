@@ -1,0 +1,49 @@
+model Computer {
+  id         Int    @id @default(autoincrement())
+  adresseMac String
+
+  user      User @relation(fields: [companyId], references: [id])
+  companyId Int
+
+  employe   Employe? @relation(fields: [employeId], references: [id])
+  employeId Int?     @unique
+}
+
+model Employe {
+  id        Int    @id @default(autoincrement())
+  lastName  String
+  firstName String
+  mail      String
+  password  String
+
+  user      User @relation(fields: [companyId], references: [id])
+  companyId Int
+
+  computer Computer?
+}
+
+model User {
+  id           Int     @id @default(autoincrement())
+  companyName  String
+  siretNumber  String  @unique
+  password     String
+  directorName String?
+
+  employes  Employe[]
+  computers Computer[]
+}
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}

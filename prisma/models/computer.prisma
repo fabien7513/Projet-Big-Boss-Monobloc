@@ -1,0 +1,11 @@
+model Computer {
+  id Int @id @default(autoincrement())
+  adresseMac String
+
+  user User @relation(fields: [companyId], references: [id])
+  companyId Int
+
+  employe  Employe? @relation(fields: [employeId], references: [id])
+  employeId Int? @unique
+
+}

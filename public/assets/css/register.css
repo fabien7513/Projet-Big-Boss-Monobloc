@@ -1,0 +1,100 @@
+/* Reset simple */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(165deg, #1857bc, #1c3778);
+  min-height: 100vh;
+  display: flex;
+ justify-content: space-between;
+  align-items: center;
+}
+
+/* Conteneur principal */
+main {
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+}
+
+/* Carte */
+section {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+
+}
+
+/* Titre */
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #1e293b;
+  font-size: 26px;
+}
+
+/* Groupes de formulaire */
+form div {
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Labels */
+label {
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #334155;
+}
+
+/* Inputs */
+input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+a{
+    display: flex;
+    justify-content: center;
+}
+
+/* Bouton */
+button {
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background-color: #2563eb;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+button:hover {
+  background-color: #1d4ed8;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Messages d'erreur */
+p {
+  font-size: 13px;
+  color: #dc2626;
+  margin-top: 4px;
+}

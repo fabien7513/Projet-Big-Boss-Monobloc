@@ -1,0 +1,184 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #dadcde;
+}
+
+/* --- LAYOUT PRINCIPAL --- */
+.dashboard-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+  width: 240px;
+  background: #0f172a;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.hello {
+  font-size: 14px;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.sidebar h2 {
+  font-size: 16px;
+  color: #94a3b8;
+}
+
+.sidebar-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.sidebar-btn:hover {
+  background: #1d4ed8;
+}
+
+/* --- COLONNES DROITE / MILIEU --- */
+.column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* --- CARTES --- */
+.content-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.content-card-assign {
+  background-color: #0c235b;
+  color: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.content-card-assign h2 {
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.content-card-assign label {
+  margin-bottom: 6px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.inputAssign {
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+}
+
+
+/* --- FORMULAIRES --- */
+form div {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+/* --- LISTES --- */
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Ligne employé (avec actions) */
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Boutons modifier/supprimer */
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-edit {
+  background: #2563eb;
+}
+
+.btn-delete {
+  background: #dc2626;
+}
+
+.btn-delete-unassign {
+  background-color: green;
+}
+
+.btn-delete-unassign:hover {
+  background-color: rgb(80, 199, 84);
+}
+
+
+.btn-delete:hover {
+  background: #b91c1c;
+}
+
+/* boutons des ordinateurs (ta class btneffet) */
+.btneffet {
+  margin-left: 10px;
+}
+
+
+
+

@@ -1,0 +1,235 @@
+{% extends "../layout/base.twig" %}
+
+{% block style %}
+	<link rel="stylesheet" href="/static/assets/css/home.css">
+{% endblock %}
+
+{% block main %}
+
+
+	<section
+		class="dashboard-container">
+
+		<!-- COLONNE GAUCHE -->
+		<aside class="sidebar">
+			<p class="hello">Bienvenue
+				<br><br>
+				{{ directorName }}</p>
+			<h2>Gestion</h2>
+			<button class="sidebar-btn" id="btnEmploye" type="button">Ajouter Employé</button>
+			<button class="sidebar-btn" id="btnComputer" type="button">Ajouter Ordinateur</button>
+		</aside>
+
+		<!-- COLONNE MILIEU : EMPLOYÉS -->
+		<div
+			class="column">
+
+			<!-- FORM EMPLOYÉ (caché) -->
+			<div class="content-card" id="employeForm" style="display:none;">
+				<h2>Ajouter un employé</h2>
+
+				<form action="/employe/add" method="post" id="formEmploye">
+					<div>
+						<label for="lastName">Nom</label>
+						<input id="lastName" type="text" name="lastName" placeholder="Ton nom" required>
+					</div>
+					<div>
+						<label for="firstName">Prénom</label>
+						<input id="firstName" type="text" name="firstName" placeholder="Ton prénom" required>
+					</div>
+					<div>
+						<label for="mail">Mail</label>
+						<input id="mail" type="email" name="mail" placeholder="Ton mail" required>
+					</div>
+					<div>
+						<label for="password">Mot de passe</label>
+						<input id="password" type="password" name="password" placeholder="Ton mot de passe" required>
+					</div>
+					<button type="submit">Créer</button>
+				</form>
+			</div>
+
+			<!-- LISTE EMPLOYÉS (toujours visible) -->
+			<div class="content-card">
+				<h2>Liste des employés</h2>
+
+				<ul>
+					{% for employe in employes %}
+						<li class="item">
+							{% if editEmploye and editEmploye.id == employe.id %}
+								<form action="/employe/update/{{ employe.id }}" method="POST" style="width:100%;">
+									<div>
+										<input type="text" name="lastName" value="{{ employe.lastName }}" required>
+									</div>
+									<div>
+										<input type="text" name="firstName" value="{{ employe.firstName }}" required>
+									</div>
+									<div>
+										<input type="email" name="mail" value="{{ employe.mail }}" required>
+									</div>
+									<div class="actions">
+										<button type="submit" class="btn-edit">Enregistrer</button>
+										<a href="/" class="btn-delete" style="text-decoration:none; display:inline-block;">Annuler</a>
+									</div>
+								</form>
+
+							{% else %}
+								<span>
+									{{ employe.lastName }}
+									{{ employe.firstName }}
+									—
+									{{ employe.mail }}
+								</span>
+
+								<div class="actions">
+									<form action="/employe/update/{{ employe.id }}" method="GET">
+										<button type="submit" class="btn-edit">Modifier</button>
+									</form>
+
+									<form action="/employe/delete/{{ employe.id }}" method="POST">
+										<button type="submit" class="btn-delete">Supprimer</button>
+									</form>
+								</div>
+
+							{% endif %}
+
+						</li>
+
+					{% else %}
+						<li>Aucun employé</li>
+					{% endfor %}
+				</ul>
+			</div>
+
+		</div>
+
+		{# /*-- COLONNE DROITE : ORDINATEURS  #}
+		<div
+			class="column">
+
+			{# FORM ORDI (caché) #}
+			<div class="content-card" id="computerForm" style="display:none;">
+				<h2>Ajouter un ordinateur</h2>
+
+				<form action="/computer/add" method="post" id="formComputer">
+					<div>
+						<label for="adresseMac">Adresse MAC</label>
+						<input id="adresseMac" type="text" name="adresseMac" placeholder="Adresse MAC" required>
+					</div>
+					<button type="submit">Créer</button>
+				</form>
+			</div>
+
+
+
+			{# -- LISTE ORDINATEURS (toujours visible) -- #}
+			<div class="content-card">
+				<h2>Liste des ordinateurs</h2>
+
+				<ul>
+					{% for computer in computers %}
+						<li class="items">
+							{% if editComputer and editComputer.id == computer.id %}
+								<form action="/computer/update/{{ computer.id }}" method="POST" style="width:100%;">
+									<div>
+										<input type="text" name="adresseMac" value="{{ computer.adresseMac }}" required>
+									</div>
+									<div class="actions">
+										<button type="submit" class="btn-edit">Enregistrer</button>
+										<a href="/" class="btn-delete" style="text-decoration:none; display:inline-block;">Annuler</a>
+									</div>
+								</form>
+
+							{% else %}
+								<span>
+									{{ computer.adresseMac }}
+
+									{% if computer.employe %}
+										{{ computer.employe.lastName }}
+										{{ computer.employe.firstName }}
+									{% else %}
+										— Libre
+									{% endif %}
+								</span>
+								<div class="actions">
+
+									<form action="/computer/update/{{ computer.id }}" method="GET" style="display:inline;">
+										<button class="btn-edit" type="submit">Modifier</button>
+									</form>
+
+									<form action="/computer/delete/{{ computer.id }}" method="POST" style="display:inline;">
+										<button class="btn-delete" type="submit">Supprimer</button>
+									</form>
+
+									{% if computer.employe %}
+										<form action="/computer/unassign/{{ computer.id }}" method="POST" style="display:inline;">
+											<button class="btn-delete-unassign" type="submit">Désassigner</button>
+										</form>
+									{% endif %}
+								</div>
+							{% endif %}
+						</li>
+					{% else %}
+						<li>Aucun ordinateur</li>
+					{% endfor %}
+				</ul>
+			</div>
+
+			<div class="content-card-assign">
+				<h2>Assigner un Ordinateur</h2>
+
+				<form action="/computer/assign" method="post">
+
+					<div>
+						<label class="inputAssign" for="employeId">Employé</label>
+						<select class="inputAssign" id="employeId" name="employeId" required>
+							<option value="">Choisir un employé libre</option>
+							{% for employe in employes %}
+								{% if not employe.computer %}
+									<option value="{{ employe.id }}">
+										{{ employe.lastName }}
+										{{ employe.firstName }}
+									</option>
+								{% endif %}
+
+							{% endfor %}
+						</select>
+					</div>
+
+					<div>
+						<label class="inputAssign" for="computerId">Ordinateur</label>
+						<select class="inputAssign" id="computerId" name="computerId" required>
+						<option value="">Choisir un Ordinateur libre</option>
+							{% for computer in computers %}
+								{% if computer.employeId == null %}
+									<option value="{{ computer.id }}">{{ computer.adresseMac }}</option>
+								{% endif %}
+							{% endfor %}
+						</select>
+					</div>
+
+					<button type="submit">Assigner</button>
+				</form>
+			</div>
+
+		</div>
+
+	</section>
+
+	<script>
+		const btnEmploye = document.querySelector("#btnEmploye");
+const employeFormCard = document.querySelector("#employeForm");
+
+const btnComputer = document.querySelector("#btnComputer");
+const computerFormCard = document.querySelector("#computerForm");
+
+
+btnEmploye.addEventListener("click", () => {
+employeFormCard.style.display = (employeFormCard.style.display === "none") ? "block" : "none";
+});
+
+btnComputer.addEventListener("click", () => {
+computerFormCard.style.display = (computerFormCard.style.display === "none") ? "block" : "none";
+});
+	</script>
+{% endblock %}

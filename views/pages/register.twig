@@ -1,0 +1,57 @@
+{% extends "../layout/base.twig" %}
+
+{% block style %}
+	<link rel="stylesheet" href="/static/assets/css/register.css">
+{% endblock %}
+
+{% block title %}
+	<title>{{ title }}</title>
+{% endblock %}
+
+{% block main %}
+
+	<main>
+
+		<section >
+
+			<div>
+				<h2>Inscription</h2>
+			</div>
+			<div>
+				<form action="/register" method="post">
+					<div>
+						<label for="companyName">Nom de l'entreprise</label>
+						<input id="companyName" type="text" name="companyName" placeholder="Nom de l'entreprise"/>
+					</div>
+					<div>
+						<label for="siretNumber">Numéro de Siret</label>
+						<input id="siretNumber" type="text" name="siretNumber" placeholder="10 chiffres" pattern="\d{10}" maxlength="10"/>
+						{% if error %}
+							<p>{{error.siretNumber}}</p>
+						{% endif %}
+					</div>
+					<div>
+						<label for="directorName">Votre prénom et votre nom</label>
+						<input id="directorName" type="text" name="directorName" placeholder="Votre Prénom et votre Nom"/>
+					</div>
+					<div>
+						<label for="password">Mot de Passe</label>
+						<input id="password" type="password" name="password" placeholder="Mot de Passe"/>
+					</div>
+					<div>
+						<label for="confirm_password">Confirmez votre mot de passe</label>
+						<input id="confirm_password" type="password" name="confirm_password" placeholder="Confirmer votre Mot de Passe"/>
+						{% if error %}
+							{{error}}
+						{% endif %}
+					</div>
+
+					<div>
+						<button type="submit">S'enregistrer</button>
+					</div>
+					<a href="/login">Déja inscrit?</a>
+				</form>
+			</div>
+		</section>
+	</main>
+{% endblock %}
