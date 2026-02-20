@@ -180,5 +180,46 @@ li {
 }
 
 
+.actionstwo {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+}
 
 
+.btn-edittwo,
+.btn-deletetwo {
+  font-family: Arial, Helvetica, sans-serif; /* ou inherit */
+  font-size: 14px;
+  min-width: 120px;
+  padding: 8px 18px;      
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-edittwo {
+  background-color: #3f8b26;
+  color: white;
+  border: none;
+}
+
+.btn-edittwo:hover {
+  background-color: #0e4812;
+}
+
+.btn-deletetwo {
+  background-color: #252a35;
+  color: #f8f9fa;
+  border: none;
+}
+
+.btn-deletetwo:hover {
+  background-color: #b7bac0;
+}
