@@ -121,7 +121,6 @@
 			</div>
 
 
-
 			{# -- LISTE ORDINATEURS (toujours visible) -- #}
 			<div class="content-card">
 				<h2>Liste des ordinateurs</h2>
@@ -199,7 +198,7 @@
 					<div>
 						<label class="inputAssign" for="computerId">Ordinateur</label>
 						<select class="inputAssign" id="computerId" name="computerId" required>
-						<option value="">Choisir un Ordinateur libre</option>
+							<option value="">Choisir un Ordinateur libre</option>
 							{% for computer in computers %}
 								{% if computer.employeId == null %}
 									<option value="{{ computer.id }}">{{ computer.adresseMac }}</option>
@@ -217,7 +216,7 @@
 	</section>
 
 	<script>
-		const btnEmploye = document.querySelector("#btnEmploye");
+const btnEmploye = document.querySelector("#btnEmploye");
 const employeFormCard = document.querySelector("#employeForm");
 
 const btnComputer = document.querySelector("#btnComputer");

@@ -8,8 +8,6 @@ import { computerRouter } from "./routers/computerRouter.js";
 import path from "node:path";
 
 
-
-
 const app = express()
 
 app.use('/static', express.static(path.resolve('public')))

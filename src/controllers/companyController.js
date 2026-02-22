@@ -1,9 +1,7 @@
-import { log } from "node:console";
 import { PrismaClient } from "../../generated/prisma/client.js";
 import { adapter } from "../../prisma/adapter.js";
 const prisma = new PrismaClient({ adapter });
 
-// ici logique generaliste
 
 export async function homeComputerEmploye(req, res) {
   try {
@@ -16,7 +14,7 @@ export async function homeComputerEmploye(req, res) {
       where: { companyId: req.user.id },
       include: { computer: true }
     });
-    // affiche la page d'accueil en lui envoyant la liste des ordinateurs
+    // affiche la page d'accueil en lui envoyant la liste des ordinateurs et des employés
 
     res.render("pages/home.twig", {
       directorName: req.user.directorName,

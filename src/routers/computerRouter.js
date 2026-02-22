@@ -5,7 +5,6 @@ import { addComputer, assignComputer, deleteComputer, getUpdateComputer, postUpd
 export const computerRouter = express.Router()
 
 
-
 computerRouter.post("/computer/add", authguard, addComputer)
 computerRouter.post("/computer/delete/:id", authguard, deleteComputer)
 

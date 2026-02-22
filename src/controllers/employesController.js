@@ -4,10 +4,6 @@ const prisma = new PrismaClient({ adapter }).$extends(hashPasswordExtension);
 import bcrypt from "bcrypt"
 import { hashPasswordExtension } from "../../prisma/extensions/hastPasswordExtension.js";
 
-
-// ici logique propre aux employés + assignation d'ordinateur
-
-
 /*---------------Ajouter un employé---------------------*/
 
 export async function addEmploye(req, res) {
@@ -93,9 +89,6 @@ export async function getUpdateEmploye(req, res) {
     res.redirect("/");
   }
 }
-
-
-
 
 export async function postUpdateEmploye(req, res) {
   try {

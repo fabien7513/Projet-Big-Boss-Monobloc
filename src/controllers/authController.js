@@ -5,7 +5,7 @@ const prisma = new PrismaClient({ adapter }).$extends(hashPasswordExtension);
 import bcrypt from "bcrypt"
 
 
-
+// INSCRIPTION
 export function getRegister(req, res){
     res.render("pages/register.twig", {
         title: "Inscription"
@@ -34,13 +34,13 @@ export async function postRegister(req, res){
     }
 }
 
+// CONNEXION
 export async function getLogin(req,res){
     const login = await prisma.user.findMany();
     res.render("pages/login.twig",{
         title:"Inscription"
     })
 }
-
 
 export async function postLogin(req,res){
     const {siretNumber, password, confirm_password} = req.body
@@ -74,6 +74,7 @@ export async function postLogin(req,res){
 
 }
 
+// DECONNEXION
 export async function logout(req,res){
     req.session.destroy()
     res.redirect('/')

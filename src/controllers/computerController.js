@@ -3,7 +3,6 @@ import { adapter } from "../../prisma/adapter.js";
 const prisma = new PrismaClient({ adapter });
 
 
-
 /*--------------- AJOUTER UN ORDINATEUR-------------------- */
 export async function addComputer(req, res) {
     try {
@@ -28,7 +27,6 @@ export async function addComputer(req, res) {
         
     }
 }
-
 /*---------------Supprimer un ordinateur---------------------*/
 
 export async function deleteComputer(req, res) {
@@ -48,14 +46,13 @@ export async function deleteComputer(req, res) {
 
     }
 }
-
 /*---------------Modifier un ordinateur---------------------*/
 
 export async function getUpdateComputer(req, res) {
   try {
     const id = parseInt(req.params.id);
 
-    // sécurité (recommandé) : vérifier que l'employé appartient à l'entreprise
+    // sécurité: vérifier que l'employé appartient à l'entreprise
     const computer = await prisma.computer.findFirst({
       where: { id, companyId: req.user.id },
     });
@@ -81,9 +78,6 @@ export async function getUpdateComputer(req, res) {
     res.redirect("/");
   }
 }
-
-
-
 
 export async function postUpdateComputer(req, res) {
   try {
